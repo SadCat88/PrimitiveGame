@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+html(lang="ru")
+    head
+        meta(charset="UTF-8")
+        meta(name="viewport" content="width=device-width, initial-scale=1.0")
+        meta(http-equiv="X-UA-Compatible" content="ie=edge")
+        title Primitive Game
+    body
+        div.wrapper
+            header.header
+                p header
+            main.main
+                p main
+                div.service-data
+                    ul
+                        li#pageBgColor $pageBgColor: 
+                        li#panelBgColor $panelBgColor: 
+                        li
+                        li#canvasBgColor $canvasBgColor: 
+                        li#canvasFigureBg $canvasFigureBg: 
+
+                canvas( id="canvas" width="480" height="320").canvas.center-p
+                    | Опаньки...<br>
+                    | Здесь должен был быть элемент Canvas с какими-то картинками или анимацией.<br>
+                    | Если вы можете прочитать этот текст, значит что-то пошло не так.<br>
+                    | Скорей всего вы прибыли из прошлого, у нас тут в будущем весело...
+            footer.footer
+                p footer
+            script(src="index.js")
