@@ -15,6 +15,7 @@ https://sadcat88.github.io/PrimitiveGame/prod/<br>
 - HTML через Pug
 - CSS через SCSS
 - Vanilla JavaScript через Babel с трансплитом до ES5
+- Git (спасибо, Кэп)
 
 **Цветовая палитра:**<br/>
 https://sadcat88.github.io/PrimitiveGame/ExtraSRC/Palette.png
