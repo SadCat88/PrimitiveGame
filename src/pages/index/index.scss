@@ -1,4 +1,5 @@
 @import '../../assets/scss/utils/vars.scss';
+@import '../../assets/scss/utils/fonts.scss';
 
 .wrapper {
     background-color: $pageBgColor;
@@ -47,5 +48,9 @@
 
     #canvasFigureBg::after {
         content: '#{$canvasFigureBg}';
+    }
+
+    #canvasText::after {
+        content: '#{$canvasText}';
     }
 }

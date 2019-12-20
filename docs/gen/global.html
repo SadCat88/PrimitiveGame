@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#getAfterContent">getAfterContent</a></li>
+					<li><a href="global.html#draw">draw</a></li><li><a href="global.html#getAfterContent">getAfterContent</a></li><li><a href="global.html#howStringWidthPX">howStringWidthPX</a></li>
 				</ul>
 			</li>
 			
@@ -138,23 +138,31 @@
     
 
     
-        <h3 class="subsection-title">Members</h3>
+
+    
+        <h3 class="subsection-title">Methods</h3>
 
         <dl>
             
 <hr>
-<dt class="name" id="getAfterContent">
-    <h4 id="getAfterContent"><span class="type-signature">&lt;constant> </span>getAfterContent<span class="type-signature"></span></h4>
-
+<dt>
+    <h4 class="name" id="draw"><span class="type-signature"></span>draw()</h4>
+    
     
 </dt>
 <dd>
+
     
     <div class="description">
-        <p>Позволяет получить из DOM значение свойства content: ' ' у псевдоэлемента</p>
+        <p>Отрисовывает 1 кадр движения шарика за каждый свой вызов</p>
     </div>
     
 
+    
+
+    
+
+    
     
 
     
@@ -180,7 +188,7 @@
 	
     <dd>
         <ul class="dummy">
-            <li><pre><code>Данная функция необходима для передачи значений переменных объявленных в SCSS через HTML в JS.<br>В HTML необходимо создать список вида:< ul>   < li id="mainColor">< /li>< /ul>Элементы списка в значении id должны содержать название переменнойДанный список рекомендуется скрывать свойством display: none;В SCSS можно создать любую переменную и передать ее псевдоэлементом в HTML:$mainColor: #600c65;#mainColor::after {    content: '#{$mainColor}';}В JS можно получить значение свойства content: ' ' следующим образом:let $mainColor = getAfterContent("#mainColor");<b>Зачем???</b>Здоровому человеку это скорей всего никогда не понадобится, а нездоровый захотел определить цвета в SCSS, а потом этими цветами в canvas рисовать. Таким образом возможно быстро менять стилистику всей страницы снаружи и внутри canvas, поменяв значения переменных в одном файле.</code></pre></li>
+            <li>Учитывает столкновения и меняет траекторию</li>
         </ul>
     </dd>
     
@@ -207,11 +215,365 @@
 
 
     
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="getAfterContent"><span class="type-signature"></span>getAfterContent(id)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Позволяет получить из DOM значение свойства content: ' ' у псевдоэлемента</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>id</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>строка вида '#id', которая является id нужного элемента в DOM<br></p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li><pre><code>Данная функция необходима для передачи значений переменных объявленных в SCSS через HTML в JS.<br>В HTML необходимо создать список вида:< ul>   < li id="mainColor">< /li>< /ul>Элементы списка в значении id должны содержать название переменнойДанный список рекомендуется скрывать свойством display: none;В SCSS можно создать любую переменную и передать ее псевдоэлементом в HTML:$mainColor: #600c65;#mainColor::after {    content: '#{$mainColor}';}В JS можно получить значение свойства content: ' ' следующим образом:let $mainColor = getAfterContent("#mainColor");<b>Зачем???</b>Здоровому человеку это скорей всего никогда не понадобится,а нездоровый захотел определить цвета в SCSS, а потом этими цветами в canvas рисовать.Таким образом возможно быстро менять стилистику всей страницы снаружи и внутри canvas,поменяв значения переменных в одном файле.</code></pre></li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+<div class="param-desc">
+    <ul>
+<li>содержимое свойства content: ' '<br></li>
+</ul>
+</div>
+
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">string</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="howStringWidthPX"><span class="type-signature"></span>howStringWidthPX(string, fontSize)</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Позволяет узнать длину строки в пикселях</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+        <h5>Parameters:</h5>
+        
+
+<table class="params table table-striped">
+    <thead>
+    <tr>
+        
+        <th>Name</th>
+        
+
+        <th>Type</th>
+
+        
+
+        
+
+        <th class="last">Description</th>
+    </tr>
+    </thead>
+
+    <tbody>
+    
+
+        <tr>
+            
+                <td class="name"><code>string</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">string</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>некая строка</p></td>
+        </tr>
+
+    
+
+        <tr>
+            
+                <td class="name"><code>fontSize</code></td>
+            
+
+            <td class="type">
+            
+                
+<span class="param-type">number</span>
+
+
+
+            
+            </td>
+
+            
+
+            
+
+            <td class="description last"><p>размер шрифта</p></td>
+        </tr>
+
+    
+    </tbody>
+</table>
+
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li><pre>Данная функция работает только с конкретным моноширинным шрифтом"Pixel Emulator"</pre></li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+    <h5>Returns:</h5>
+    
+            
+
+
+<dl>
+    <dt>
+        Type
+    </dt>
+    <dd>
+        
+<span class="param-type">number</span>
+
+
+
+    </dd>
+</dl>
+
+
+        
+
+    
 </dd>
 
         </dl>
-    
-
     
 
     
@@ -261,7 +623,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on December 18th 2019, 11:20:01 am
+		on December 19th 2019, 2:13:54 pm
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

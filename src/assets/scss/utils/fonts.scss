@@ -1,0 +1,9 @@
+// пути к шрифтам относительно файла base.scss
+
+@font-face {
+    font-family: 'PixelEmulator';
+    src: local('PixelEmulator'),
+        url('../../assets/fonts/PixelEmulator.ttf') format('truetype');
+    font-weight: 400;
+    font-style: normal;
+}
