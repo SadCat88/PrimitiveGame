@@ -65,6 +65,9 @@ let brickWidth = 75;
 let brickHeight = 20;
 let brick_x = 0;
 let brick_y = 0;
+let brickLeftSide = 0;
+let brickRightSide = 0;
+let brickBottomSide = 0;
 
 // === кирпичное поле
 let field = [];
@@ -164,6 +167,26 @@ let drawGameOver = () => {
   }
 };
 
+// === поиск столкновений
+let whereWasCollision = () => {
+  for (let row = 0; row < fieldRow; row++) {
+    for (let col = 0; col < fieldColumn; col++) {
+      // field[row][col];
+      brick_x = field[row][col].x;
+      brick_y = field[row][col].y;
+      brickLeftSide = brick_x;
+      brickRightSide = brick_x + brickWidth;
+      brickBottomSide = brick_y + brickHeight;
+
+      if (ball_y <= brickBottomSide) {
+        if (ball_x >= brickLeftSide && ball_x <= brickRightSide) {
+          ball_dy = -ball_dy;
+        }
+      }
+    }
+  }
+};
+
 /**
  * Рисует 1 кадр движения шарика за каждый свой вызов
  *
@@ -226,9 +249,10 @@ const draw = () => {
   }
 
   // === отрисовка кадра
-  drawBall();
   drawPad();
   drawBricks();
+  drawBall();
+  whereWasCollision();
   drawGameOver();
 };
 
