@@ -53,4 +53,8 @@
     #canvasText::after {
         content: '#{$canvasText}';
     }
+
+    #canvasBrick::after {
+        content: '#{$canvasBrick}';
+    }
 }

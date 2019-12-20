@@ -23,6 +23,7 @@ let $canvasBgColor = getAfterContent('#canvasBgColor');
 let $panelBgColor = getAfterContent('#panelBgColor');
 let $canvasFigureBg = getAfterContent('#canvasFigureBg');
 let $canvasText = getAfterContent('#canvasText');
+let $canvasBrick = getAfterContent('#canvasBrick');
 
 // === canvas ==================================================================
 let canvas = document.getElementById('canvas');
@@ -65,6 +66,7 @@ let brickWidth = 75;
 let brickHeight = 20;
 let brick_x = 0;
 let brick_y = 0;
+let brickLife = 1;
 let brickLeftSide = 0;
 let brickRightSide = 0;
 let brickBottomSide = 0;
@@ -83,7 +85,7 @@ console.log(marginLeft);
 for (let row = 0; row < fieldRow; row++) {
   field[row] = [];
   for (let col = 0; col < fieldColumn; col++) {
-    field[row][col] = { x: 0, y: 0 };
+    field[row][col] = { x: 0, y: 0, life: 1 };
   }
 }
 console.log(field);
@@ -139,13 +141,16 @@ const drawBall = () => {
 let drawBricks = () => {
   for (let row = 0; row < fieldRow; row++) {
     for (let col = 0; col < fieldColumn; col++) {
+      if (field[row][col].life == 0) {
+        continue;
+      }
       field[row][col].x = brickWidth * col + gapWidth * col + marginLeft;
       field[row][col].y = brickHeight * row + gapHeight * row + marginTop;
       brick_x = field[row][col].x;
       brick_y = field[row][col].y;
       ctx.beginPath();
       ctx.rect(brick_x, brick_y, brickWidth, brickHeight);
-      ctx.fillStyle = '#3e5691';
+      ctx.fillStyle = $canvasBrick;
       ctx.fill();
       ctx.closePath();
     }
@@ -174,13 +179,19 @@ let whereWasCollision = () => {
       // field[row][col];
       brick_x = field[row][col].x;
       brick_y = field[row][col].y;
+      brickLife = field[row][col].life;
       brickLeftSide = brick_x;
       brickRightSide = brick_x + brickWidth;
       brickBottomSide = brick_y + brickHeight;
 
       if (ball_y <= brickBottomSide) {
-        if (ball_x >= brickLeftSide && ball_x <= brickRightSide) {
+        if (
+          ball_x >= brickLeftSide &&
+          ball_x <= brickRightSide &&
+          brickLife == 1
+        ) {
           ball_dy = -ball_dy;
+          field[row][col].life = 0;
         }
       }
     }
