@@ -28,6 +28,17 @@ let $canvasText = getAfterContent('#canvasText');
 let canvas = document.getElementById('canvas');
 let ctx = canvas.getContext('2d');
 
+// === размеры игрового экрана
+let screen_x = 0;
+let screen_y = 0;
+let screenWidth = canvas.width;
+let screenHeight = canvas.height;
+
+let screenLeftSide = 0;
+let screenRightSide = canvas.width;
+let screenTopSide = 0;
+let screenBottomSide = canvas.height;
+
 // ====== мячик
 // === координаты мячика
 let ball_x = canvas.width / 2;
@@ -49,20 +60,33 @@ let padLeftSide = pad_x;
 let padRightSide = pad_x + padWidth;
 let padTopSide = pad_y;
 
+// === кирпичи
+let brickWidth = 75;
+let brickHeight = 20;
+let brick_x = 0;
+let brick_y = 0;
+
+// === кирпичное поле
+let field = [];
+let fieldRow = 3;
+let fieldColumn = 5;
+let gapWidth = 15;
+let gapHeight = 15;
+let fieldWidth = fieldColumn * brickWidth + (fieldColumn - 1) * gapWidth;
+let marginTop = 30;
+let marginLeft = (screenWidth - fieldWidth) / 2;
+console.log(marginLeft);
+
+for (let row = 0; row < fieldRow; row++) {
+  field[row] = [];
+  for (let col = 0; col < fieldColumn; col++) {
+    field[row][col] = { x: 0, y: 0 };
+  }
+}
+console.log(field);
 
 // === флаг события - конец игры
 let gameOver = false;
-
-// === размеры игрового экрана
-let screen_x = 0;
-let screen_y = 0;
-let screenWidth = canvas.width;
-let screenHeight = canvas.height;
-
-let screenLeftSide = 0;
-let screenRightSide = canvas.width;
-let screenTopSide = 0;
-let screenBottomSide = canvas.height;
 
 /**
  * Позволяет узнать длину строки в пикселях
@@ -106,6 +130,38 @@ const drawBall = () => {
   ctx.fillStyle = $canvasFigureBg;
   ctx.fill();
   ctx.closePath();
+};
+
+// === отрисовка кирпичей
+let drawBricks = () => {
+  for (let row = 0; row < fieldRow; row++) {
+    for (let col = 0; col < fieldColumn; col++) {
+      field[row][col].x = brickWidth * col + gapWidth * col + marginLeft;
+      field[row][col].y = brickHeight * row + gapHeight * row + marginTop;
+      brick_x = field[row][col].x;
+      brick_y = field[row][col].y;
+      ctx.beginPath();
+      ctx.rect(brick_x, brick_y, brickWidth, brickHeight);
+      ctx.fillStyle = '#3e5691';
+      ctx.fill();
+      ctx.closePath();
+    }
+  }
+};
+
+// === отрисовка надписи Game over
+let drawGameOver = () => {
+  if (gameOver == true) {
+    let fontSize = 50;
+    let string = 'Game over';
+    let stringLength = howStringWidthPX(string, fontSize);
+    let string_x = canvas.width / 2 - stringLength / 2;
+    let string_y = 100;
+
+    ctx.fillStyle = $canvasText;
+    ctx.font = `${fontSize}px PixelEmulator`;
+    ctx.fillText(string, string_x, string_y);
+  }
 };
 
 /**
@@ -155,19 +211,6 @@ const draw = () => {
     }
   }
 
-  // === Game over
-  if (gameOver == true) {
-    let fontSize = 50;
-    let string = 'Game over';
-    let stringLength = howStringWidthPX(string, fontSize);
-    let string_x = canvas.width / 2 - stringLength / 2;
-    let string_y = 100;
-
-    ctx.fillStyle = $canvasText;
-    ctx.font = `${fontSize}px PixelEmulator`;
-    ctx.fillText(string, string_x, string_y);
-  }
-
   // === перемещение ракетки влево
   if (leftArrowDown == true && padLeftSide >= screenLeftSide) {
     pad_x -= 2;
@@ -185,6 +228,8 @@ const draw = () => {
   // === отрисовка кадра
   drawBall();
   drawPad();
+  drawBricks();
+  drawGameOver();
 };
 
 // === бинд клавиш =============================================================
