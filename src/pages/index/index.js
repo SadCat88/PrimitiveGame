@@ -70,6 +70,7 @@ let brickLife = 1;
 let brickLeftSide = 0;
 let brickRightSide = 0;
 let brickBottomSide = 0;
+let brickQty = 15;
 
 // === кирпичное поле
 let field = [];
@@ -80,18 +81,21 @@ let gapHeight = 15;
 let fieldWidth = fieldColumn * brickWidth + (fieldColumn - 1) * gapWidth;
 let marginTop = 30;
 let marginLeft = (screenWidth - fieldWidth) / 2;
-console.log(marginLeft);
 
+// заполнение массива
 for (let row = 0; row < fieldRow; row++) {
   field[row] = [];
   for (let col = 0; col < fieldColumn; col++) {
     field[row][col] = { x: 0, y: 0, life: 1 };
   }
 }
-console.log(field);
+
+// игровые баллы
+let score = 0;
 
 // === флаг события - конец игры
 let gameOver = false;
+let youWin = false;
 
 /**
  * Позволяет узнать длину строки в пикселях
@@ -120,6 +124,10 @@ const howStringWidthPX = (string, fontSize) => {
 };
 
 // === отрисовка ракетки
+/**
+ * Рисует ракетку
+ *
+ */
 const drawPad = () => {
   ctx.beginPath();
   ctx.rect(pad_x, pad_y, padWidth, padHeight);
@@ -128,7 +136,11 @@ const drawPad = () => {
   ctx.closePath();
 };
 
-// === отрисовка шарика
+// === отрисовка мячика
+/**
+ * Рисует мячик
+ *
+ */
 const drawBall = () => {
   ctx.beginPath();
   ctx.arc(ball_x, ball_y, ballRadius, 0, Math.PI * 2, false);
@@ -138,6 +150,13 @@ const drawBall = () => {
 };
 
 // === отрисовка кирпичей
+/**
+ * Рисует кирпичи
+ *
+ * @deprecated <pre>
+ * Заполняет живыми кирпичами массив (поле для кирпичей)
+ * </pre>
+ */
 let drawBricks = () => {
   for (let row = 0; row < fieldRow; row++) {
     for (let col = 0; col < fieldColumn; col++) {
@@ -158,25 +177,64 @@ let drawBricks = () => {
 };
 
 // === отрисовка надписи Game over
+/**
+ * Рисует надпись об окончании игры
+ *
+ * @deprecated <pre>
+ * В случае победы надпись - 'You win!'
+ * В случае проигрыша надпись - 'Game over'
+ * </pre>
+ */
 let drawGameOver = () => {
   if (gameOver == true) {
+    let string = '';
+    if (youWin == true) {
+      string = 'You win!';
+    }
+    if (youWin == false) {
+      string = 'Game over';
+    }
     let fontSize = 50;
-    let string = 'Game over';
     let stringLength = howStringWidthPX(string, fontSize);
-    let string_x = canvas.width / 2 - stringLength / 2;
+    let string_x = screenWidth / 2 - stringLength / 2;
     let string_y = 100;
 
     ctx.fillStyle = $canvasText;
     ctx.font = `${fontSize}px PixelEmulator`;
     ctx.fillText(string, string_x, string_y);
+    console.log(string);
+    console.log(`количество кирпичей ${brickQty}`);
   }
 };
 
+// === вывод количества очков
+/**
+ * Выводит количество набранных очков
+ *
+ */
+let drawScore = () => {
+  let fontSize = 14;
+  let string = `Score = ${score}`;
+  let stringLength = howStringWidthPX(string, fontSize);
+  let string_x = screenWidth - stringLength - 20;
+  let string_y = 20;
+
+  ctx.fillStyle = $canvasText;
+  ctx.font = `${fontSize}px PixelEmulator`;
+  ctx.fillText(string, string_x, string_y);
+};
+
 // === поиск столкновений
+/**
+ * Отпределяет столкновения мячика с кирпичами
+ *
+ * @deprecated <pre>
+ * Если столкновение с кирпичом произошло, он помечается как неживой.
+ * </pre>
+ */
 let whereWasCollision = () => {
   for (let row = 0; row < fieldRow; row++) {
     for (let col = 0; col < fieldColumn; col++) {
-      // field[row][col];
       brick_x = field[row][col].x;
       brick_y = field[row][col].y;
       brickLife = field[row][col].life;
@@ -192,6 +250,8 @@ let whereWasCollision = () => {
         ) {
           ball_dy = -ball_dy;
           field[row][col].life = 0;
+          brickQty -= 1;
+          score += 1;
         }
       }
     }
@@ -199,10 +259,17 @@ let whereWasCollision = () => {
 };
 
 /**
- * Рисует 1 кадр движения шарика за каждый свой вызов
+ * Перерисовывает игровой экран за каждый свой вызов
  *
- * @deprecated
- * Проверяет всю логику движения объектов на игровом поле
+ * @deprecated <pre>
+ * Проверяет всю логику движения объектов на игровом поле:
+ * - Смещение мячика за кадр
+ * - Отскок от краев экрана
+ * - Отскок от ракетки
+ * - Отскок от кирпичей и их убийство
+ * - Победу, поражение
+ * - Движение ракетки
+ * </pre>
  */
 const draw = () => {
   // === очистка предыдущего кадра
@@ -238,6 +305,12 @@ const draw = () => {
     gameOver = true;
   }
 
+  // === закончились кирпичи - Game over
+  if (brickQty == 0) {
+    gameOver = true;
+    youWin = true;
+  }
+
   // === отбив ракеткой
   if (ball_y + ballRadius == padTopSide) {
     if (ball_x >= padLeftSide && ball_x <= padRightSide) {
@@ -259,11 +332,17 @@ const draw = () => {
     padRightSide += 2;
   }
 
+  // === чит
+  if (cheat == true) {
+    brickQty = 0;
+  }
+
   // === отрисовка кадра
   drawPad();
   drawBricks();
   drawBall();
   whereWasCollision();
+  drawScore();
   drawGameOver();
 };
 
@@ -271,23 +350,29 @@ const draw = () => {
 // === флаг события - нажатие кнопок
 let leftArrowDown = false;
 let rightArrowDown = false;
+let cheat = false;
 
 // === нажатие кнопки
 let keyDown = element => {
-  if (element.key == 'ArrowLeft') {
+  if (element.code == 'ArrowLeft') {
     leftArrowDown = true;
   }
-  if (element.key == 'ArrowRight') {
+  if (element.code == 'ArrowRight') {
     rightArrowDown = true;
+  }
+  console.log(element);
+  if (element.code == 'Numpad0') {
+    cheat = true;
+    console.log('Читер!');
   }
 };
 
 // === отпускание кнопки
 let keyUp = element => {
-  if (element.key == 'ArrowLeft') {
+  if (element.code == 'ArrowLeft') {
     leftArrowDown = false;
   }
-  if (element.key == 'ArrowRight') {
+  if (element.code == 'ArrowRight') {
     rightArrowDown = false;
   }
 };

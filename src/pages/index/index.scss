@@ -10,6 +10,12 @@
 
     background-color: $panelBgColor;
     box-shadow: 0px 0px 10px 15px rgba(85, 0, 88, 1);
+
+    .header__heading {
+        text-align: center;
+        line-height: 10vh;
+        color: $canvasText;
+    }
 }
 
 .main {
@@ -21,19 +27,23 @@
 
     background-color: $panelBgColor;
     box-shadow: 0px 0px 10px 15px rgba(85, 0, 88, 1);
+
+    .legend {
+        display: flex;
+        justify-content: space-around;
+        color: $canvasText;
+        line-height: 10vh;
+    }
 }
 
 .canvas {
     background-color: $canvasBgColor;
 }
 
-.kek::after {
-    content: ' kek #{$panelBgColor}';
-}
-
-
 
 .service-data {
+    display: none;
+
     #pageBgColor::after {
         content: '#{$pageBgColor}';
     }

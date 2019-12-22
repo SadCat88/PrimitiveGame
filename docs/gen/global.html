@@ -33,7 +33,7 @@
 			<li class="dropdown">
 				<a href="global.html" class="dropdown-toggle" data-toggle="dropdown">Global<b class="caret"></b></a>
 				<ul class="dropdown-menu ">
-					<li><a href="global.html#draw">draw</a></li><li><a href="global.html#getAfterContent">getAfterContent</a></li><li><a href="global.html#howStringWidthPX">howStringWidthPX</a></li>
+					<li><a href="global.html#draw">draw</a></li><li><a href="global.html#drawBall">drawBall</a></li><li><a href="global.html#drawBricks">drawBricks</a></li><li><a href="global.html#drawGameOver">drawGameOver</a></li><li><a href="global.html#drawPad">drawPad</a></li><li><a href="global.html#drawScore">drawScore</a></li><li><a href="global.html#getAfterContent">getAfterContent</a></li><li><a href="global.html#howStringWidthPX">howStringWidthPX</a></li><li><a href="global.html#whereWasCollision">whereWasCollision</a></li>
 				</ul>
 			</li>
 			
@@ -154,7 +154,7 @@
 
     
     <div class="description">
-        <p>Отрисовывает 1 кадр движения шарика за каждый свой вызов</p>
+        <p>Перерисовывает игровой экран за каждый свой вызов</p>
     </div>
     
 
@@ -188,11 +188,419 @@
 	
     <dd>
         <ul class="dummy">
-            <li>Учитывает столкновения и меняет траекторию</li>
+            <li><pre>Проверяет всю логику движения объектов на игровом поле:- Смещение мячика за кадр- Отскок от краев экрана- Отскок от ракетки- Отскок от кирпичей и их убийство- Победу, поражение- Движение ракетки</pre></li>
         </ul>
     </dd>
     
     
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="drawBall"><span class="type-signature"></span>drawBall()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Рисует мячик</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="drawBricks"><span class="type-signature"></span>drawBricks()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Рисует кирпичи</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li><pre>Заполняет живыми кирпичами массив (поле для кирпичей)</pre></li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="drawGameOver"><span class="type-signature"></span>drawGameOver()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Рисует надпись об окончании игры</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li><pre>В случае победы надпись - 'You win!'В случае проигрыша надпись - 'Game over'</pre></li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="drawPad"><span class="type-signature"></span>drawPad()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Рисует ракетку</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="drawScore"><span class="type-signature"></span>drawScore()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Выводит количество набранных очков</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
 
 	
 
@@ -325,7 +733,7 @@
 	
     <dd>
         <ul class="dummy">
-            <li><pre><code>Данная функция необходима для передачи значений переменных объявленных в SCSS через HTML в JS.<br>В HTML необходимо создать список вида:< ul>   < li id="mainColor">< /li>< /ul>Элементы списка в значении id должны содержать название переменнойДанный список рекомендуется скрывать свойством display: none;В SCSS можно создать любую переменную и передать ее псевдоэлементом в HTML:$mainColor: #600c65;#mainColor::after {    content: '#{$mainColor}';}В JS можно получить значение свойства content: ' ' следующим образом:let $mainColor = getAfterContent("#mainColor");<b>Зачем???</b>Здоровому человеку это скорей всего никогда не понадобится,а нездоровый захотел определить цвета в SCSS, а потом этими цветами в canvas рисовать.Таким образом возможно быстро менять стилистику всей страницы снаружи и внутри canvas,поменяв значения переменных в одном файле.</code></pre></li>
+            <li><pre><code>Данная функция необходима для передачи значений переменных объявленных в SCSS через HTML в JS.<br>В HTML необходимо создать список вида:< ul>   < li id="mainColor">< /li>< /ul>Элементы списка в значении id должны содержать название переменнойДанный список рекомендуется скрывать свойством display: none;В SCSS можно создать любую переменную и передать ее псевдоэлементом в HTML:$mainColor: #600c65;#mainColor::after {    content: '#{$mainColor}';}В JS можно получить значение свойства content: ' ' следующим образом:let $mainColor = getAfterContent("#mainColor");<b>Зачем???</b>Возникла необходимость определить цвета в SCSS, а потом этими цветами рисовать в canvas.Таким образом возможно быстро менять стилистику всей страницы снаружи и внутри canvas,поменяв значения переменных в одном файле.</code></pre></li>
         </ul>
     </dd>
     
@@ -573,6 +981,93 @@
     
 </dd>
 
+        
+            
+<hr>
+<dt>
+    <h4 class="name" id="whereWasCollision"><span class="type-signature"></span>whereWasCollision()</h4>
+    
+    
+</dt>
+<dd>
+
+    
+    <div class="description">
+        <p>Отпределяет столкновения мячика с кирпичами</p>
+    </div>
+    
+
+    
+
+    
+
+    
+    
+
+    
+<dl class="details">
+    
+
+	
+
+	
+
+	
+
+    
+
+    
+
+    
+
+    
+
+	
+	<dt class="important tag-deprecated method-doc-label method-doc-details-label">Deprecated:</dt>
+	
+    <dd>
+        <ul class="dummy">
+            <li><pre>Если столкновение с кирпичом произошло, он помечается как неживой.</pre></li>
+        </ul>
+    </dd>
+    
+    
+
+	
+
+	
+
+	
+
+	
+
+
+
+	
+
+	
+
+	
+
+	
+</dl>
+
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+
+    
+</dd>
+
         </dl>
     
 
@@ -623,7 +1118,7 @@
 <span class="jsdoc-message">
 	Documentation generated by <a href="https://github.com/jsdoc3/jsdoc">JSDoc 3.6.3</a>
 	
-		on December 19th 2019, 2:13:54 pm
+		on December 22nd 2019, 11:00:35 am
 	
 	using the <a href="https://github.com/docstrap/docstrap">DocStrap template</a>.
 </span>

@@ -8,9 +8,8 @@ html(lang="ru")
     body
         div.wrapper
             header.header
-                p header
+                h1.header__heading Breakout
             main.main
-                p main
                 div.service-data
                     ul
                         li#pageBgColor $pageBgColor: 
@@ -20,9 +19,6 @@ html(lang="ru")
                         li#canvasFigureBg $canvasFigureBg: 
                         li#canvasText $canvasText: 
                         li#canvasBrick $canvasBrick: 
-                        li
-                        li
-                            input(type="text" id="kek")
 
                 canvas( id="canvas" width="480" height="320").canvas.center-p
                     | Опаньки...<br>
@@ -30,5 +26,7 @@ html(lang="ru")
                     | Если вы можете прочитать этот текст, значит что-то пошло не так.<br>
                     | Скорей всего вы прибыли из прошлого, у нас тут в будущем весело...
             footer.footer
-                p footer
+                div.legend
+                    p press Arrow-Left to move pad left.
+                    p press Arrow-Right to move pad right.
             script(src="index.js")
